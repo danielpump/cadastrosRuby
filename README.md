@@ -26,3 +26,8 @@ Tecnologias
 Sinatra
 JQuery
 MongoDB
+
+Observações
+===========================
+A primeira versão do sistema será feita de forma não modularizada com o sistema de roteamento.
+Como idéia inicial será seguido o padrão de nomencleatura dos arquivos RHTML para realizar o roteamento dos controllers.
