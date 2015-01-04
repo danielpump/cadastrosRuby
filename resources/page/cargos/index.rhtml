@@ -6,17 +6,22 @@
 	<body>
 
 		Cargo
+		<form method="get" name="formListagem">			
 		<table border="1">
 		<tr>
+			<td>Código</td>
 			<td>Descrição</td>
 		</tr>
 		<tr>
 			<% for cargo in @entidades%>
+				<td>
+					<input type="submit" value="<%=cargo.codigo%>" onclick="document.formListagem.action='/cargos/<%=cargo.codigo%>'"  />
+					</td>
 				<td><%=cargo.descricao%></td>
 			<%end%>
 		</tr>
 		</table>			
-		
+		</form>
 		
 	</body>
 

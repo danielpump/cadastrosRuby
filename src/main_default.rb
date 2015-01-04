@@ -6,6 +6,12 @@
 require 'sinatra'
 require File.expand_path('controllers/controller')
 
+#Mapa com os controllers existente para auxiliar no roteamento das requisições.
+controllers = {}
+
+controllers["cargos"] = CargoController
+
+
 #Por padrão o sinatra define as rotas atraves do métodos na classe de acesso a WEB
 #A principio o menu será acessado apenas com requisições GET a partir da raiz do projeto.
 #O Sinatra utiliza o padrão REST para as requisições
@@ -19,8 +25,17 @@ get '/topo' do
   File.read(File.join('..','resources','page','topo.rhtml'))
 end
 
+#Toda chamada em que a action for /entidade, será invocado o método index do respectivo controller e o método index irá retornar a listagem
+#de entidades, para que a pagina index.rhtml da respectiva entidade possa ser invocada.
+#A principio as entidades Controllers não são exatamente controllers já que quem gerencia as chamadas é a classe principal que executa o Sinatra.
 get '/:pagina' do     
-  @entidades = CargoController.new.index
+  @entidades = controllers[params[:pagina]].new.index
   erb File.read(File.join('..','resources','page',params[:pagina],'index.rhtml'))
 end
+
+get '/:pagina/:codigo' do
+  @entidade = controllers[params[:pagina]].new.buscar params[:codigo]
+  erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
+end
+
 
