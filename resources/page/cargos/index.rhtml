@@ -6,8 +6,17 @@
 	<body>
 
 		Cargo
+		<table border="1">
+		<tr>
+			<td>Descrição</td>
+		</tr>
+		<tr>
+			<% for cargo in @entidades%>
+				<td><%=cargo.descricao%></td>
+			<%end%>
+		</tr>
+		</table>			
 		
-		<%=puts @entidades%>
 		
 	</body>
 
