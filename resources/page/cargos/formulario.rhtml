@@ -6,13 +6,15 @@
 	<body>
 
 		Cargo
-		<form>
-			
+		<form name="formEntidade">			
 			Código
-			<input type="text" value="<%=@entidade.codigo%>" />
+			<input type="text" <%= "readonly" if @read_only%> value="<%=@entidade.codigo%>" />
+			</br>
 			Descrição
-			<input type="text" value="<%=@entidade.descricao%>" />
-			
+			<input type="text" <%= "readonly" if @read_only%> value="<%=@entidade.descricao%>" />
+			<% unless @read_only  %>
+				<input type="submit" value="Salvar" />
+			<% end %>
 		</form>
 		
 	</body>

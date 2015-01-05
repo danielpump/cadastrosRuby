@@ -13,5 +13,9 @@ class CargoController
     cargo = Cargo.new "1", "Teste"
     cargo
   end
+  
+  def nova_entidade
+    Cargo.new "", ""
+  end
 
 end

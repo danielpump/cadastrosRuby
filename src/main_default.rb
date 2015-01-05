@@ -33,9 +33,28 @@ get '/:pagina' do
   erb File.read(File.join('..','resources','page',params[:pagina],'index.rhtml'))
 end
 
-get '/:pagina/:codigo' do
+#Existe precedencia de rotas, deixar a mais dinamica para o fim
+get '/:pagina/criar' do
+  puts "Criar"
+  @entidade = controllers[params[:pagina]].new.nova_entidade
+  @read_only = false
+  erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
+end 
+
+get '/:pagina/editar/:codigo' do
+  puts "Editar"
   @entidade = controllers[params[:pagina]].new.buscar params[:codigo]
+  @read_only = false
+  erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
+end 
+
+get '/:pagina/:codigo' do
+  puts "buscar"
+  @entidade = controllers[params[:pagina]].new.buscar params[:codigo]
+  @read_only = true
   erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
 end
+
+
 
 
