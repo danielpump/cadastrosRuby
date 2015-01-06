@@ -1,12 +1,13 @@
 require File.expand_path('dominio/cargo')
+require File.expand_path('controllers/basico')
 
 class CargoController
   
-  def index
-    cargo = Cargo.new "1", "Teste"
-    cargos = []
-    cargos << cargo
-    cargos
+  include BasicoController
+  
+  def index    
+    cargos = carregar_todas "cargos"
+    cargos    
   end
   
   def buscar(codigo)

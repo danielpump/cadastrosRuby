@@ -8,6 +8,4 @@ class Cargo < Basico
     @descricao = descricao
   end
   
-  
-  
 end

@@ -21,6 +21,10 @@ get '/' do
   File.read(File.join('..','resources','page','index.rhtml'))
 end
 
+get '/favicon.ico' do  
+  
+end
+
 get '/topo' do  
   File.read(File.join('..','resources','page','topo.rhtml'))
 end
@@ -55,6 +59,11 @@ get '/:pagina/:codigo' do
   erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
 end
 
+post '/:pagina' do
+  puts "Novo"
+  @entidades = controllers[params[:pagina]].new.index
+  erb File.read(File.join('..','resources','page',params[:pagina],'index.rhtml'))
+end
 
-
+  
 

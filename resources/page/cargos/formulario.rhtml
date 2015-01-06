@@ -6,14 +6,14 @@
 	<body>
 
 		Cargo
-		<form name="formEntidade">			
+		<form name="formEntidade" method="post">			
 			Código
-			<input type="text" <%= "readonly" if @read_only%> value="<%=@entidade.codigo%>" />
+			<input type="text" name="codigo" <%= "readonly" if @read_only%> value="<%=@entidade.codigo%>" />
 			</br>
 			Descrição
-			<input type="text" <%= "readonly" if @read_only%> value="<%=@entidade.descricao%>" />
+			<input type="text" name="descricao" <%= "readonly" if @read_only%> value="<%=@entidade.descricao%>" />
 			<% unless @read_only  %>
-				<input type="submit" value="Salvar" />
+				<input type="submit" value="Salvar" onclick="document.formEntidade.action='/cargos'" />
 			<% end %>
 		</form>
 		

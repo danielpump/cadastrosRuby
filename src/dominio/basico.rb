@@ -6,6 +6,4 @@ class Basico
     @codigo = codigo
   end
   
-  
-  
 end
