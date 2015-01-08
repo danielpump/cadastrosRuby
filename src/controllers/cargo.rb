@@ -18,5 +18,11 @@ class CargoController
   def nova_entidade
     Cargo.new "", ""
   end
+  
+  def entidade
+    Cargo
+  end
+
+
 
 end

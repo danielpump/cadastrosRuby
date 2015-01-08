@@ -1,9 +1,10 @@
 class Basico
   
-  attr_reader :codigo
+  attr_accessor :codigo, :id
   
-  def initialize(codigo)
+  def initialize(codigo = "")
+    @id = 1
     @codigo = codigo
   end
-  
+    
 end

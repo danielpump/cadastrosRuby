@@ -12,5 +12,15 @@ def carregar_todos(entidade)
   cargos = []
   cargos << cargo
 end
+
+def criar(entidade)
+  puts "Salvando"
+  p entidade  
+end
+
+def atualizar(entidade)
+  puts "Atualizando"
+  p entidade  
+end
   
 end
