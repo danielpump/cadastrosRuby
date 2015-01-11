@@ -12,6 +12,7 @@ class CargoController
   
   def buscar(codigo)
     cargo = Cargo.new "1", "Teste"
+    cargo.id=1
     cargo
   end
   

@@ -12,9 +12,9 @@ module BasicoController
   def salvar(entidade)
     dao = BasicoDAO.instance
     if(entidade.id)
-      dao.criar entidade
-    else
       dao.atualizar entidade
+    else
+      dao.criar entidade      
     end
   end
 

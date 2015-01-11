@@ -39,36 +39,34 @@ end
 
 #Existe precedencia de rotas, deixar a mais dinamica para o fim
 get '/:pagina/criar' do
-  puts "Novo"
   @entidade = controllers[params[:pagina]].new.nova_entidade
   @read_only = false
+  @edit_mode = false
   erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
 end 
 
 #Carrega uma entidade chamando a pagina de vizualização
 get '/:pagina/:codigo' do
-  puts "buscar"
   @entidade = controllers[params[:pagina]].new.buscar params[:codigo]
   @read_only = true
+  @edit_mode = false
   erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
 end
 
 #Carrega uma entidade chamando a pagina de edição
 get '/:pagina/editar/:codigo' do
-  puts "Editar"
   @entidade = controllers[params[:pagina]].new.buscar params[:codigo]
   @read_only = false
+  @edit_mode = true
   erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
 end 
 
 #Chamada utilizada para criação de entidades
-post '/:pagina' do
-  puts "Criando"
+post '/:pagina' do  
   @controller = controllers[params[:pagina]].new
   @entidade = @controller.entidade.new
   params.each do |chave, valor|        
-    metodo = :"#{chave}="
-    puts @entidade.respond_to?(metodo) 
+    metodo = :"#{chave}="    
     if @entidade.respond_to?(metodo) == true 
       @entidade.send(metodo, params[chave])
     end 
@@ -78,14 +76,4 @@ post '/:pagina' do
   erb File.read(File.join('..','resources','page',params[:pagina],'index.rhtml'))
 end
 
-#Chamada utilizada para atualização de entidades
-put '/:pagina' do
-  puts "Atualizando"
-  controller = controllers[params[:pagina]].new
-  controller.salvar "Cargo"
-  @entidades = @controller.index
-  erb File.read(File.join('..','resources','page',params[:pagina],'index.rhtml'))
-end
-
-  
 

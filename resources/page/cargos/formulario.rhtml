@@ -6,16 +6,25 @@
 	<body>
 
 		Cargo
-		<form name="formEntidade" method="post">			
+		<form name="formEntidade" method='post' >	
+			<% if @edit_mode  %>
+				<input type="hidden" name="id" value="<%=@entidade.id%>" />
+			<% end %>		
 			Código
 			<input type="text" name="codigo" <%= "readonly" if @read_only%> value="<%=@entidade.codigo%>" />
 			</br>
 			Descrição
 			<input type="text" name="descricao" <%= "readonly" if @read_only%> value="<%=@entidade.descricao%>" />
 			<% unless @read_only  %>
-				<input type="submit" value="Salvar" onclick="document.formEntidade.action='/cargos'" />
+				<input type="submit" value="Salvar" onclick="executeOnSubmitFormEntidade()" />
 			<% end %>
 		</form>
+		
+		<script type="text/javascript">
+			function executeOnSubmitFormEntidade () {
+			  document.formEntidade.action='/cargos'
+			}			
+		</script>
 		
 	</body>
 

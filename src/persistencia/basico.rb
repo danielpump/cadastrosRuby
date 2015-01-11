@@ -9,6 +9,7 @@ include Singleton
 
 def carregar_todos(entidade)
   cargo = Cargo.new "1", "Teste"
+  cargo.id=1
   cargos = []
   cargos << cargo
 end
