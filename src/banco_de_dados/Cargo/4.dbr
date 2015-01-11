@@ -1,0 +1,4 @@
+--- !ruby/object:Cargo
+id: 4
+codigo: '2'
+descricao: Tester

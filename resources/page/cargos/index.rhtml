@@ -6,30 +6,32 @@
 	<body>
 
 		Cargo
-		<form method="get" name="formListagem">			
-		<table border="1">
-		<tr>
-			<td>Código</td>
-			<td>Descrição</td>			
-			<td>Ações</td>
-		</tr>
-		<tr>
-			<% for cargo in @entidades%>
-				<td>
-					<input type="submit" value="<%=cargo.codigo%>" onclick="document.formListagem.action='/cargos/<%=cargo.codigo%>'"  />
-				</td>
-				<td><%=cargo.descricao%></td>
-				<td>
-					<input type="submit" value="Editar" onclick="document.formListagem.action='/cargos/editar/<%=cargo.codigo%>'"  />
-				</td>
-			<%end%>
-		</tr>
-		</table>
-		
-		<input type="submit" value="Novo" onclick="document.formListagem.action='/cargos/criar'"  />
-					
+		<form method="get" name="formListagem">
+			<table border="1">
+				<tr>
+					<td>Código</td>
+					<td>Descrição</td>
+					<td>Ações</td>
+				</tr>
+
+				<% for cargo in @entidades%>
+				<tr>
+					<td>
+					<input type="submit" value="<%= cargo.codigo%>" onclick="document.formListagem.action='/cargos/<%= cargo.codigo%>'"  />
+					</td>
+					<td><%= cargo.descricao%></td>
+					<td>
+					<input type="submit" value="Editar" onclick="document.formListagem.action='/cargos/editar/<%= cargo.codigo%>'"  />
+					</td>
+				</tr>
+				<%end%>
+
+			</table>
+
+			<input type="submit" value="Novo" onclick="document.formListagem.action='/cargos/criar'"  />
+
 		</form>
-		
+
 	</body>
 
 </html>

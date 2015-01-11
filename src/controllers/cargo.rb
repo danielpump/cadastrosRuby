@@ -6,7 +6,7 @@ class CargoController
   include BasicoController
   
   def index    
-    cargos = carregar_todas "cargos"
+    cargos = carregar_todas entidade
     cargos    
   end
   
@@ -27,3 +27,4 @@ class CargoController
 
 
 end
+
