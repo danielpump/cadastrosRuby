@@ -17,5 +17,12 @@ module BasicoController
       dao.criar entidade      
     end
   end
+  
+  def buscar_por(codigo)
+    dao = BasicoDAO.instance    
+    dao.buscar_pelo_primeiro(entidade) do |entidade|
+      entidade.codigo == codigo
+    end
+  end
 
 end

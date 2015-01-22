@@ -22,6 +22,7 @@ def carregar_todos(classe_da_entidade)
   entidades.reverse
 end
 
+
 def criar(entidade)
   entidade.id = gerar_identificador(entidade)  
   gravar_entidade(entidade)  
@@ -29,6 +30,40 @@ end
 
 def atualizar(entidade)  
   gravar_entidade(entidade)
+end
+
+def buscar(entidade)  
+  Dir.glob(carregar_arquivo_da_entidade(entidade)) do |arquivo_da_entidade|
+    File.open(arquivo_da_entidade,"r") do |arquivo|
+      entidade = YAML.load arquivo       
+    end
+  end
+  entidade
+end
+
+def buscar_por_todos(classe_da_entidade)
+  entidades = carregar_todos classe_da_entidade
+  entidades_filtradas = []
+  entidades.each do |entidade|
+    passou_no_filtro = yield entidade if block_given?
+    if(passou_no_filtro == true)
+      entidades_filtradas << entidade
+    end   
+  end
+  entidades_filtradas
+end
+
+def buscar_pelo_primeiro(classe_da_entidade)
+  entidades = carregar_todos classe_da_entidade
+  entidade_encontrada = nil
+  entidades.each do |entidade|
+    passou_no_filtro = yield entidade if block_given?
+    if(passou_no_filtro == true)
+      entidade_encontrada = entidade
+      break
+    end
+  end
+  entidade_encontrada
 end
 
 def carregar_pasta_da_entidade(classe_da_entidade)
@@ -53,7 +88,7 @@ def carregar_pasta_da_entidade_com_extensao(classe_da_entidade, extensao)
 end
   
 def carregar_arquivo_da_entidade(entidade)
-  File.join(carregar_pasta_da_entidade(entidade.class),entidade.id.to_s+".dbr")
+  File.join(carregar_pasta_da_entidade(entidade.class),"#{entidade.id.to_s}.dbr")
 end
 
 def gravar_entidade(entidade)

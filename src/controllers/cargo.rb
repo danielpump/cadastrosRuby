@@ -10,12 +10,6 @@ class CargoController
     cargos    
   end
   
-  def buscar(codigo)
-    cargo = Cargo.new "1", "Teste"
-    cargo.id=1
-    cargo
-  end
-  
   def nova_entidade
     Cargo.new "", ""
   end
@@ -23,8 +17,6 @@ class CargoController
   def entidade
     Cargo
   end
-
-
 
 end
 
