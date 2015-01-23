@@ -47,7 +47,7 @@ end
 
 #Carrega uma entidade chamando a pagina de vizualização
 get '/:pagina/:codigo' do
-  @entidade = controllers[params[:pagina]].new.buscar params[:codigo]
+  @entidade = controllers[params[:pagina]].new.buscar_por params[:codigo]
   @read_only = true
   @edit_mode = false
   erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
