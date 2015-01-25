@@ -61,6 +61,15 @@ get '/:pagina/editar/:codigo' do
   erb File.read(File.join('..','resources','page',params[:pagina],'formulario.rhtml'))
 end 
 
+#Carrega uma entidade chamando a pagina de edição
+get '/:pagina/apagar/:codigo' do
+  controller = controllers[params[:pagina]].new
+  @entidade = controller.buscar_por params[:codigo]
+  controller.apagar @entidade
+  @entidades = controllers[params[:pagina]].new.index
+  erb File.read(File.join('..','resources','page',params[:pagina],'index.rhtml'))
+end 
+
 #Chamada utilizada para criação de entidades
 post '/:pagina' do  
   @controller = controllers[params[:pagina]].new

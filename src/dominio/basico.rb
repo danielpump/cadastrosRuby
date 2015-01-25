@@ -6,5 +6,9 @@ class Basico
     @id = nil
     @codigo = codigo
   end
+  
+  def esta_no_contexto_de_persistencia?
+    not @id.nil?
+  end
     
 end
